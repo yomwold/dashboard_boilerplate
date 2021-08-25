@@ -3,7 +3,7 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: process.env.NODE_ENV,
-  entry: './client/index.js',
+  entry: './client/index.tsx',
   output: {
     publicPath: '/',
     path: path.resolve(__dirname, 'dist'),
@@ -35,6 +35,11 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: [/node_modules/],
+      },
     ],
   },
   plugins: [
@@ -44,7 +49,7 @@ module.exports = {
     }),
   ],
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.tsx', '.ts', '.js'],
   },
   devServer: {
     historyApiFallback: true,
